@@ -311,12 +311,16 @@
        </div>
       </div>
      </div>
-     <div class="hidden md:flex space-x-8"><a class="nav-link font-medium" data-page="home" onclick="navigateToPage('home')">Home</a> <a class="nav-link font-medium" data-page="clinics" onclick="navigateToPage('clinics')">Clinics</a> <a class="nav-link font-medium" data-page="pharmacies" onclick="navigateToPage('pharmacies')">Pharmacies</a> <a class="nav-link font-medium" data-page="services" onclick="navigateToPage('services')">Services</a> <a class="nav-link font-medium" data-page="contact" onclick="navigateToPage('contact')">Contact</a>
+     <div class="hidden md:flex space-x-8 items-center"><a class="nav-link font-medium" data-page="home" onclick="navigateToPage('home')">Home</a> <a class="nav-link font-medium" data-page="clinics" onclick="navigateToPage('clinics')">Clinics</a> <a class="nav-link font-medium" data-page="pharmacies" onclick="navigateToPage('pharmacies')">Pharmacies</a> <a class="nav-link font-medium" data-page="services" onclick="navigateToPage('services')">Services</a> <a class="nav-link font-medium" data-page="contact" onclick="navigateToPage('contact')">Contact</a>
+      <div class="flex items-center space-x-2 ml-4"><button onclick="changeLanguage('en')" id="lang-en" class="lang-btn px-3 py-1 rounded-lg font-medium transition-all" style="background-color: #667eea; color: white;">EN</button> <button onclick="changeLanguage('ar')" id="lang-ar" class="lang-btn px-3 py-1 rounded-lg font-medium transition-all">AR</button>
+      </div>
      </div><button class="md:hidden" onclick="toggleMobileMenu()">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg></button>
     </div><!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2"><a class="block nav-link py-2" onclick="navigateToPage('home')">Home</a> <a class="block nav-link py-2" onclick="navigateToPage('clinics')">Clinics</a> <a class="block nav-link py-2" onclick="navigateToPage('pharmacies')">Pharmacies</a> <a class="block nav-link py-2" onclick="navigateToPage('services')">Services</a> <a class="block nav-link py-2" onclick="navigateToPage('contact')">Contact</a>
+     <div class="flex items-center space-x-2 pt-4 border-t"><button onclick="changeLanguage('en')" id="lang-en-mobile" class="lang-btn px-4 py-2 rounded-lg font-medium transition-all flex-1" style="background-color: #667eea; color: white;">English</button> <button onclick="changeLanguage('ar')" id="lang-ar-mobile" class="lang-btn px-4 py-2 rounded-lg font-medium transition-all flex-1">العربية</button>
+     </div>
     </div>
    </div>
   </nav><!-- HOME PAGE -->
@@ -824,7 +828,7 @@
       clinics_page_title: "Our Medical Clinics",
       clinics_page_subtitle: "State-of-the-art facilities providing comprehensive healthcare",
       clinic_1_name: "Dose Clinic",
-      clinic_1_address: "ش  رع الستين, Almudhbah, Taif 26576",
+      clinic_1_address: "شارع الستين, Almudhbah, Taif 26576",
       clinic_1_phone: "0127433334",
       clinic_2_name: "Al Taj Clinic",
       clinic_2_address: "شارع الستين, Almudhbah, Taif 26576",
@@ -847,6 +851,334 @@
     };
 
     let currentPage = 'home';
+    let currentLanguage = 'en';
+
+    const translations = {
+      en: {
+        nav_home: 'Home',
+        nav_clinics: 'Clinics',
+        nav_pharmacies: 'Pharmacies',
+        nav_services: 'Services',
+        nav_contact: 'Contact',
+        hero_title: 'Transforming Healthcare Through Innovation',
+        hero_subtitle: 'Comprehensive medical services, premium pharmacies, and cutting-edge security solutions',
+        cta_primary: 'Explore Our Services',
+        cta_secondary: 'Contact Us Today',
+        stat_locations: 'Locations',
+        stat_customers: 'Happy Customers',
+        stat_experience: 'Years Experience',
+        stat_team: 'Team Members',
+        services_title: 'Our Services',
+        medical_clinics: 'Medical Clinics',
+        clinics_locations: '2 Locations',
+        clinics_desc: 'State-of-the-art medical facilities with experienced healthcare professionals',
+        premium_pharmacies: 'Premium Pharmacies',
+        pharmacies_locations: '3 Locations',
+        pharmacies_desc: 'Certified pharmacists providing quality medications and health consultations',
+        security_solutions: 'Security Solutions',
+        security_locations: '2 Locations',
+        security_desc: 'CCTV shop & Digital marketing services',
+        clinics_page_title: 'Our Medical Clinics',
+        clinics_page_subtitle: 'State-of-the-art facilities providing comprehensive healthcare',
+        hours: 'Hours',
+        services_offered: 'Services Offered',
+        general_medicine: 'General Medicine',
+        pediatrics: 'Pediatrics',
+        emergency_care: 'Emergency Care',
+        laboratory_services: 'Laboratory Services',
+        family_medicine: 'Family Medicine',
+        womens_health: "Women's Health",
+        chronic_disease: 'Chronic Disease Management',
+        preventive_care: 'Preventive Care',
+        pharmacies_page_title: 'Our Premium Pharmacies',
+        pharmacies_page_subtitle: 'Quality medications and expert pharmaceutical care',
+        services_page_title: 'Complete Healthcare & Security Solutions',
+        services_page_subtitle: 'Comprehensive services tailored to your needs',
+        medical_services: 'Medical Services',
+        pharmacy_services: 'Pharmacy Services',
+        security_marketing: 'Security & Marketing Solutions',
+        cctv_shop: 'CCTV Shop',
+        cctv_desc: 'Complete security camera solutions',
+        cctv_installation: 'Professional CCTV Installation',
+        cctv_monitoring: '24/7 Monitoring Systems',
+        cctv_hd: 'HD & IP Camera Solutions',
+        cctv_maintenance: 'System Maintenance & Support',
+        digital_marketing: 'Digital Marketing',
+        digital_desc: 'Comprehensive online marketing services',
+        digital_social: 'Social Media Management',
+        digital_seo: 'SEO & Content Marketing',
+        digital_ads: 'Paid Advertising Campaigns',
+        digital_brand: 'Brand Strategy & Analytics',
+        prescription_filling: 'Prescription Filling',
+        prescription_desc: 'Fast and accurate medication dispensing',
+        consultations: 'Consultations',
+        consultations_desc: 'Expert pharmaceutical advice',
+        health_products: 'Health Products',
+        health_products_desc: 'Wide range of wellness items',
+        delivery_service: 'Delivery Service',
+        delivery_desc: 'Convenient home delivery available',
+        contact_title: 'Get In Touch',
+        contact_subtitle: "We're here to help with all your healthcare and security needs",
+        call_us: 'Call Us',
+        call_available: 'Available 24/7 for emergencies',
+        visit_us: 'Visit Us',
+        visit_locations: '6 Convenient Locations',
+        visit_clinics: '2 Medical Clinics',
+        visit_pharmacies: '3 Pharmacies',
+        visit_cctv: 'CCTV Shop & Digital Marketing',
+        email_us: 'Email Us',
+        email_response: 'Quick response guaranteed',
+        footer_about: 'Leading healthcare provider with multiple clinics, pharmacies, and security solutions',
+        footer_quick_links: 'Quick Links',
+        footer_services: 'Our Services',
+        footer_clinics: '2 Medical Clinics',
+        footer_pharmacies: '3 Premium Pharmacies',
+        footer_cctv: 'CCTV Shop',
+        footer_marketing: 'Digital Marketing'
+      },
+      ar: {
+        nav_home: 'الرئيسية',
+        nav_clinics: 'العيادات',
+        nav_pharmacies: 'الصيدليات',
+        nav_services: 'الخدمات',
+        nav_contact: 'اتصل بنا',
+        hero_title: 'تحويل الرعاية الصحية من خلال الابتكار',
+        hero_subtitle: 'خدمات طبية شاملة وصيدليات متميزة وحلول أمنية متطورة',
+        cta_primary: 'استكشف خدماتنا',
+        cta_secondary: 'اتصل بنا اليوم',
+        stat_locations: 'مواقع',
+        stat_customers: 'عملاء سعداء',
+        stat_experience: 'سنوات من الخبرة',
+        stat_team: 'أعضاء الفريق',
+        services_title: 'خدماتنا',
+        medical_clinics: 'العيادات الطبية',
+        clinics_locations: 'موقعان',
+        clinics_desc: 'مرافق طبية حديثة مع متخصصي رعاية صحية ذوي خبرة',
+        premium_pharmacies: 'صيدليات متميزة',
+        pharmacies_locations: '3 مواقع',
+        pharmacies_desc: 'صيادلة معتمدون يقدمون أدوية عالية الجودة واستشارات صحية',
+        security_solutions: 'حلول الأمن',
+        security_locations: 'موقعان',
+        security_desc: 'متجر كاميرات المراقبة والتسويق الرقمي',
+        clinics_page_title: 'عياداتنا الطبية',
+        clinics_page_subtitle: 'مرافق حديثة توفر رعاية صحية شاملة',
+        hours: 'ساعات العمل',
+        services_offered: 'الخدمات المقدمة',
+        general_medicine: 'الطب العام',
+        pediatrics: 'طب الأطفال',
+        emergency_care: 'الرعاية الطارئة',
+        laboratory_services: 'خدمات المختبر',
+        family_medicine: 'طب الأسرة',
+        womens_health: 'صحة المرأة',
+        chronic_disease: 'إدارة الأمراض المزمنة',
+        preventive_care: 'الرعاية الوقائية',
+        pharmacies_page_title: 'صيدلياتنا المتميزة',
+        pharmacies_page_subtitle: 'أدوية عالية الجودة ورعاية صيدلانية متخصصة',
+        services_page_title: 'حلول رعاية صحية وأمنية متكاملة',
+        services_page_subtitle: 'خدمات شاملة مصممة خصيصاً لتلبية احتياجاتك',
+        medical_services: 'الخدمات الطبية',
+        pharmacy_services: 'خدمات الصيدلية',
+        security_marketing: 'حلول الأمن والتسويق',
+        cctv_shop: 'متجر كاميرات المراقبة',
+        cctv_desc: 'حلول كاملة لكاميرات الأمن',
+        cctv_installation: 'تركيب احترافي لكاميرات المراقبة',
+        cctv_monitoring: 'أنظمة مراقبة على مدار الساعة',
+        cctv_hd: 'حلول كاميرات عالية الدقة وIP',
+        cctv_maintenance: 'صيانة ودعم الأنظمة',
+        digital_marketing: 'التسويق الرقمي',
+        digital_desc: 'خدمات تسويق إلكتروني شاملة',
+        digital_social: 'إدارة وسائل التواصل الاجتماعي',
+        digital_seo: 'تحسين محركات البحث والمحتوى',
+        digital_ads: 'حملات إعلانية مدفوعة',
+        digital_brand: 'استراتيجية العلامة التجارية والتحليلات',
+        prescription_filling: 'صرف الوصفات الطبية',
+        prescription_desc: 'صرف دقيق وسريع للأدوية',
+        consultations: 'الاستشارات',
+        consultations_desc: 'نصائح صيدلانية متخصصة',
+        health_products: 'المنتجات الصحية',
+        health_products_desc: 'مجموعة واسعة من منتجات الصحة',
+        delivery_service: 'خدمة التوصيل',
+        delivery_desc: 'توصيل منزلي مريح',
+        contact_title: 'تواصل معنا',
+        contact_subtitle: 'نحن هنا لمساعدتك في جميع احتياجاتك الصحية والأمنية',
+        call_us: 'اتصل بنا',
+        call_available: 'متاح على مدار الساعة للطوارئ',
+        visit_us: 'قم بزيارتنا',
+        visit_locations: '6 مواقع مريحة',
+        visit_clinics: 'عيادتان طبيتان',
+        visit_pharmacies: '3 صيدليات',
+        visit_cctv: 'متجر كاميرات المراقبة والتسويق الرقمي',
+        email_us: 'راسلنا عبر البريد الإلكتروني',
+        email_response: 'استجابة سريعة مضمونة',
+        footer_about: 'مزود رعاية صحية رائد مع عيادات وصيدليات متعددة وحلول أمنية',
+        footer_quick_links: 'روابط سريعة',
+        footer_services: 'خدماتنا',
+        footer_clinics: 'عيادتان طبيتان',
+        footer_pharmacies: '3 صيدليات متميزة',
+        footer_cctv: 'متجر كاميرات المراقبة',
+        footer_marketing: 'التسويق الرقمي'
+      }
+    };
+
+    function changeLanguage(lang) {
+      currentLanguage = lang;
+      const t = translations[lang];
+      
+      // Update direction for Arabic
+      document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      
+      // Update company name based on language
+      const companyName = lang === 'ar' ? 'شركة مغانم الطبية المحدودة' : 'Maghanim Medical Co LLC';
+      document.getElementById('company-name-nav').textContent = companyName;
+      document.getElementById('footer-company-name').textContent = companyName;
+      
+      // Update navigation
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks[0].textContent = t.nav_home;
+      navLinks[1].textContent = t.nav_clinics;
+      navLinks[2].textContent = t.nav_pharmacies;
+      navLinks[3].textContent = t.nav_services;
+      navLinks[4].textContent = t.nav_contact;
+      navLinks[5].textContent = t.nav_home;
+      navLinks[6].textContent = t.nav_clinics;
+      navLinks[7].textContent = t.nav_pharmacies;
+      navLinks[8].textContent = t.nav_services;
+      navLinks[9].textContent = t.nav_contact;
+      
+      // Update language buttons
+      const langButtons = document.querySelectorAll('.lang-btn');
+      langButtons.forEach(btn => {
+        btn.style.backgroundColor = '';
+        btn.style.color = '';
+      });
+      document.getElementById('lang-' + lang).style.backgroundColor = '#667eea';
+      document.getElementById('lang-' + lang).style.color = 'white';
+      document.getElementById('lang-' + lang + '-mobile').style.backgroundColor = '#667eea';
+      document.getElementById('lang-' + lang + '-mobile').style.color = 'white';
+      
+      // Update home page
+      document.getElementById('hero-title').textContent = t.hero_title;
+      document.getElementById('hero-subtitle').textContent = t.hero_subtitle;
+      document.getElementById('cta-primary').textContent = t.cta_primary;
+      document.getElementById('cta-secondary').textContent = t.cta_secondary;
+      
+      // Update stats
+      document.querySelectorAll('#stats-section .text-lg')[0].textContent = t.stat_locations;
+      document.querySelectorAll('#stats-section .text-lg')[1].textContent = t.stat_customers;
+      document.querySelectorAll('#stats-section .text-lg')[2].textContent = t.stat_experience;
+      document.querySelectorAll('#stats-section .text-lg')[3].textContent = t.stat_team;
+      
+      // Update services overview
+      document.getElementById('services-overview-heading').textContent = t.services_title;
+      document.querySelectorAll('#services-overview h3')[0].textContent = t.medical_clinics;
+      document.querySelectorAll('#services-overview .text-2xl')[0].textContent = t.clinics_locations;
+      document.querySelectorAll('#services-overview p')[0].textContent = t.clinics_desc;
+      
+      document.querySelectorAll('#services-overview h3')[1].textContent = t.premium_pharmacies;
+      document.querySelectorAll('#services-overview .text-2xl')[1].textContent = t.pharmacies_locations;
+      document.querySelectorAll('#services-overview p')[1].textContent = t.pharmacies_desc;
+      
+      document.querySelectorAll('#services-overview h3')[2].textContent = t.security_solutions;
+      document.querySelectorAll('#services-overview .text-2xl')[2].textContent = t.security_locations;
+      document.querySelectorAll('#services-overview p')[2].textContent = t.security_desc;
+      
+      // Update clinics page
+      document.getElementById('clinics-page-title').textContent = t.clinics_page_title;
+      document.getElementById('clinics-page-subtitle').textContent = t.clinics_page_subtitle;
+      
+      // Update pharmacies page
+      document.getElementById('pharmacies-page-title').textContent = t.pharmacies_page_title;
+      document.getElementById('pharmacies-page-subtitle').textContent = t.pharmacies_page_subtitle;
+      
+      // Update services page
+      document.getElementById('services-page-title').textContent = t.services_page_title;
+      document.getElementById('services-page-subtitle').textContent = t.services_page_subtitle;
+      document.querySelectorAll('#services-detailed h2')[0].textContent = t.medical_services;
+      document.querySelectorAll('#services-detailed h2')[1].textContent = t.pharmacy_services;
+      document.querySelectorAll('#services-detailed h2')[2].textContent = t.security_marketing;
+      
+      // Update service cards on services page
+      const serviceDetailCards = document.querySelectorAll('#services-detailed .p-6 h3');
+      if (serviceDetailCards.length >= 4) {
+        serviceDetailCards[0].textContent = t.general_medicine;
+        serviceDetailCards[1].textContent = t.pediatrics;
+        serviceDetailCards[2].textContent = t.womens_health;
+        serviceDetailCards[3].textContent = t.emergency_care;
+        serviceDetailCards[4].textContent = t.prescription_filling;
+        serviceDetailCards[5].textContent = t.consultations;
+        serviceDetailCards[6].textContent = t.health_products;
+        serviceDetailCards[7].textContent = t.delivery_service;
+      }
+      
+      const serviceDetailDescs = document.querySelectorAll('#services-detailed .p-6 p');
+      if (serviceDetailDescs.length >= 4) {
+        serviceDetailDescs[0].textContent = t.general_medicine + ' - ' + t.clinics_desc.split('with')[0];
+        serviceDetailDescs[1].textContent = t.pediatrics + ' - ' + t.clinics_desc.split('with')[0];
+        serviceDetailDescs[2].textContent = t.womens_health + ' - ' + t.chronic_disease;
+        serviceDetailDescs[3].textContent = t.emergency_care + ' - ' + t.call_available;
+        serviceDetailDescs[4].textContent = t.prescription_desc;
+        serviceDetailDescs[5].textContent = t.consultations_desc;
+        serviceDetailDescs[6].textContent = t.health_products_desc;
+        serviceDetailDescs[7].textContent = t.delivery_desc;
+      }
+      
+      // Update CCTV and Digital Marketing sections
+      const securityCards = document.querySelectorAll('#services-detailed > div:last-child .p-8');
+      if (securityCards.length >= 2) {
+        securityCards[0].querySelector('h3').textContent = t.cctv_shop;
+        securityCards[0].querySelector('p').textContent = t.cctv_desc;
+        const cctvItems = securityCards[0].querySelectorAll('li span');
+        cctvItems[0].textContent = t.cctv_installation;
+        cctvItems[1].textContent = t.cctv_monitoring;
+        cctvItems[2].textContent = t.cctv_hd;
+        cctvItems[3].textContent = t.cctv_maintenance;
+        
+        securityCards[1].querySelector('h3').textContent = t.digital_marketing;
+        securityCards[1].querySelector('p').textContent = t.digital_desc;
+        const digitalItems = securityCards[1].querySelectorAll('li span');
+        digitalItems[0].textContent = t.digital_social;
+        digitalItems[1].textContent = t.digital_seo;
+        digitalItems[2].textContent = t.digital_ads;
+        digitalItems[3].textContent = t.digital_brand;
+      }
+      
+      // Update contact page
+      document.querySelector('#contact-page h1').textContent = t.contact_title;
+      document.querySelector('#contact-page section p').textContent = t.contact_subtitle;
+      
+      const contactCards = document.querySelectorAll('#contact-content h3');
+      contactCards[0].textContent = t.call_us;
+      contactCards[1].textContent = t.visit_us;
+      contactCards[2].textContent = t.email_us;
+      
+      const contactDescs = document.querySelectorAll('#contact-content .text-lg');
+      contactDescs[0].textContent = t.call_available;
+      contactDescs[1].textContent = t.visit_locations;
+      contactDescs[2].textContent = t.email_response;
+      
+      const visitLinks = document.querySelectorAll('#contact-content button');
+      visitLinks[0].textContent = t.visit_clinics;
+      visitLinks[1].textContent = t.visit_pharmacies;
+      visitLinks[2].textContent = t.visit_cctv;
+      
+      // Update footer
+      document.getElementById('footer-about').textContent = t.footer_about;
+      document.querySelectorAll('#footer h4')[0].textContent = t.footer_quick_links;
+      document.querySelectorAll('#footer h4')[1].textContent = t.footer_services;
+      
+      const footerLinks = document.querySelectorAll('#footer button');
+      footerLinks[0].textContent = t.nav_home;
+      footerLinks[1].textContent = t.nav_clinics;
+      footerLinks[2].textContent = t.nav_pharmacies;
+      footerLinks[3].textContent = t.nav_services;
+      footerLinks[4].textContent = t.nav_contact;
+      
+      const footerServices = document.querySelectorAll('#footer ul')[1].querySelectorAll('li');
+      footerServices[0].textContent = t.footer_clinics;
+      footerServices[1].textContent = t.footer_pharmacies;
+      footerServices[2].textContent = t.footer_cctv;
+      footerServices[3].textContent = t.footer_marketing;
+    }
 
     function navigateToPage(page) {
       // Hide all pages
@@ -932,9 +1264,6 @@
       document.getElementById('pharmacy-1-icon-bg').style.backgroundColor = primaryColor + '20';
       document.getElementById('pharmacy-2-icon-bg').style.backgroundColor = primaryColor + '20';
       document.getElementById('pharmacy-3-icon-bg').style.backgroundColor = primaryColor + '20';
-      document.getElementById('pharmacy-1-icon').style.color = primaryColor;
-      document.getElementById('pharmacy-2-icon').style.color = primaryColor;
-      document.getElementById('pharmacy-3-icon').style.color = primaryColor;
 
       // Buttons
       document.getElementById('cta-primary').style.backgroundColor = primaryColor;
@@ -1095,5 +1424,5 @@
     // Initialize
     navigateToPage('home');
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9aa525bee3b3edc3',t:'MTc2NTEyMjI5OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9aa53e0963395267',t:'MTc2NTEyMzI5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
