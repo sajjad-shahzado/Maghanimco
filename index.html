@@ -18,6 +18,7 @@
       padding: 0;
     }
 
+    /* Page Transitions */
     .page-content {
       display: none;
       opacity: 0;
@@ -39,6 +40,7 @@
       }
     }
 
+    /* Advanced Animations */
     @keyframes float {
       0%, 100% {
         transform: translateY(0px);
@@ -46,10 +48,6 @@
       50% {
         transform: translateY(-20px);
       }
-    }
-
-    .animate-float {
-      animation: float 3s ease-in-out infinite;
     }
 
     @keyframes pulse {
@@ -105,6 +103,53 @@
       }
     }
 
+    @keyframes shimmer {
+      0% {
+        background-position: -1000px 0;
+      }
+      100% {
+        background-position: 1000px 0;
+      }
+    }
+
+    @keyframes slideInFromLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInFromRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Animation Classes */
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+
     .pulse-element {
       animation: pulse 2.5s ease-in-out infinite;
     }
@@ -127,6 +172,7 @@
       transform-origin: center;
     }
 
+    /* Icon Effects */
     .icon-container {
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
@@ -144,6 +190,7 @@
       filter: drop-shadow(0 8px 16px rgba(102, 126, 234, 0.4));
     }
 
+    /* Text Effects */
     .gradient-text {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       -webkit-background-clip: text;
@@ -151,11 +198,13 @@
       background-clip: text;
     }
 
+    /* Card Styles */
     .service-card, .location-card {
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
       cursor: pointer;
+      border: 1px solid rgba(102, 126, 234, 0.1);
     }
 
     .service-card::before, .location-card::before {
@@ -165,8 +214,8 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-      transition: left 0.5s;
+      background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+      transition: left 0.6s ease-in-out;
     }
 
     .service-card:hover::before, .location-card:hover::before {
@@ -175,13 +224,35 @@
 
     .service-card:hover, .location-card:hover {
       transform: translateY(-12px) scale(1.02);
-      box-shadow: 0 25px 50px rgba(102, 126, 234, 0.3);
+      box-shadow: 0 25px 50px rgba(102, 126, 234, 0.25);
+      border-color: rgba(102, 126, 234, 0.3);
     }
 
+    /* Enhanced Card Styling */
+    .service-card::after, .location-card::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+      border-radius: inherit;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .service-card:hover::after, .location-card:hover::after {
+      opacity: 0.2;
+    }
+
+    /* Button Styles */
     .btn-primary {
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
     }
 
     .btn-primary::before {
@@ -192,7 +263,7 @@
       width: 0;
       height: 0;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.3);
       transform: translate(-50%, -50%);
       transition: width 0.6s, height 0.6s;
     }
@@ -203,23 +274,47 @@
     }
 
     .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-primary:active {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
     }
 
     .btn-secondary {
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-secondary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn-secondary:hover::before {
+      left: 100%;
     }
 
     .btn-secondary:hover {
-      transform: translateY(-2px);
+      transform: translateY(-3px);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     }
 
+    /* Navigation Styles */
     .nav-link {
       position: relative;
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
       cursor: pointer;
+      padding: 8px 4px;
     }
 
     .nav-link::after {
@@ -228,18 +323,25 @@
       bottom: -4px;
       left: 0;
       width: 0;
-      height: 2px;
-      background: #667eea;
+      height: 3px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
       transition: width 0.3s ease;
+      border-radius: 2px;
     }
 
     .nav-link:hover::after, .nav-link.active::after {
       width: 100%;
     }
 
+    .nav-link:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
     .hero-gradient {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
       position: relative;
+      overflow: hidden;
     }
 
     .hero-gradient::before {
@@ -251,20 +353,101 @@
       bottom: 0;
       background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect fill="rgba(255,255,255,0.03)" width="50" height="50"/><rect fill="rgba(255,255,255,0.03)" x="50" y="50" width="50" height="50"/></svg>');
       opacity: 0.5;
+      animation: shimmer 20s linear infinite;
     }
 
+    .hero-gradient::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: float 15s ease-in-out infinite;
+    }
+
+    /* Glass Effect */
     .glass-effect {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     }
 
+    /* Stats Section */
     .stat-number {
       font-size: 3rem;
       font-weight: 800;
       line-height: 1;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
     }
 
+    #stats-section > div > div {
+      animation: scaleIn 0.6s ease-out backwards;
+    }
+
+    #stats-section > div > div:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    #stats-section > div > div:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    #stats-section > div > div:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    #stats-section > div > div:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    /* Language Button Styles */
+    .lang-btn {
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .lang-btn:hover {
+      transform: scale(1.05);
+      border-color: #667eea;
+    }
+
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, #764ba2, #667eea);
+    }
+
+    /* Enhanced Focus States */
+    button:focus, a:focus {
+      outline: 2px solid #667eea;
+      outline-offset: 2px;
+    }
+
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Responsive Typography */
     @media (max-width: 768px) {
       .stat-number {
         font-size: 2rem;
@@ -291,6 +474,18 @@
       .btn-primary, .btn-secondary {
         width: 100%;
         padding: 1rem 2rem !important;
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      .hero-gradient, #navbar, #footer {
+        background: white !important;
+        color: black !important;
+      }
+      
+      .service-card, .location-card {
+        break-inside: avoid;
       }
     }
   </style>
@@ -805,7 +1000,7 @@
      </div>
     </div>
     <div class="border-t pt-8 text-center opacity-75" id="footer-border">
-     <p id="footer-copyright">© 2024 Maghanim Medical Co LLC. All rights reserved.</p>
+     <p id="footer-copyright">�� 2024 Maghanim Medical Co LLC. All rights reserved.</p>
     </div>
    </div>
   </footer>
@@ -942,7 +1137,7 @@
         nav_pharmacies: 'الصيدليات',
         nav_services: 'الخدمات',
         nav_contact: 'اتصل بنا',
-        hero_title: 'تحويل الرعاية الصحية من خلال الابتكار',
+        hero_title: 'تحو��ل الرعاية الصحية من خلال الابتكار',
         hero_subtitle: 'خدمات طبية شاملة وصيدليات متميزة وحلول أمنية متطورة',
         cta_primary: 'استكشف خدماتنا',
         cta_secondary: 'اتصل بنا اليوم',
@@ -961,7 +1156,7 @@
         security_locations: 'موقعان',
         security_desc: 'متجر كاميرات المراقبة والتسويق الرقمي',
         clinics_page_title: 'عياداتنا الطبية',
-        clinics_page_subtitle: 'مرافق حديثة توفر رعاية صحية شاملة',
+        clinics_page_subtitle: 'مرافق حديثة توف�� رعاية صحية شاملة',
         hours: 'ساعات العمل',
         services_offered: 'الخدمات المقدمة',
         general_medicine: 'الطب العام',
@@ -975,7 +1170,7 @@
         pharmacies_page_title: 'صيدلياتنا المتميزة',
         pharmacies_page_subtitle: 'أدوية عالية الجودة ورعاية صيدلانية متخصصة',
         services_page_title: 'حلول رعاية صحية وأمنية متكاملة',
-        services_page_subtitle: 'خدمات شاملة مصممة خصيصاً لتلبية احتياجاتك',
+        services_page_subtitle: 'خدمات شاملة مصممة خصيصاً لتلبية ��حتياجاتك',
         medical_services: 'الخدمات الطبية',
         pharmacy_services: 'خدمات الصيدلية',
         security_marketing: 'حلول الأمن والتسويق',
@@ -1005,7 +1200,7 @@
         call_available: 'متاح على مدار الساعة للطوارئ',
         visit_us: 'قم بزيارتنا',
         visit_locations: '6 مواقع مريحة',
-        visit_clinics: 'عيادتان طبيتان',
+        visit_clinics: 'عيادتان طبي��ان',
         visit_pharmacies: '3 صيدليات',
         visit_cctv: 'متجر كاميرات المراقبة والتسويق الرقمي',
         email_us: 'راسلنا عبر البريد الإلكتروني',
@@ -1424,5 +1619,5 @@
     // Initialize
     navigateToPage('home');
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9aa53e0963395267',t:'MTc2NTEyMzI5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9aa5cc3d34bbed6a',t:'MTc2NTEyOTExOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
