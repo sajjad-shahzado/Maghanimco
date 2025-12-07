@@ -1,0 +1,1099 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maghanim Medical Co LLC</title>
+  <link rel="icon" type="image/png" href="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/632b01e0-ee78-46d6-b9d5-1a6c1d9b70ad/image/w=256,quality=90,fit=scale-down">
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    .page-content {
+      display: none;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-in-out forwards;
+    }
+
+    .page-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+      }
+    }
+
+    @keyframes pulseRing {
+      0% {
+        transform: scale(0.95);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.05);
+        opacity: 0.6;
+      }
+      100% {
+        transform: scale(0.95);
+        opacity: 1;
+      }
+    }
+
+    @keyframes floatGentle {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @keyframes rotateSlow {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes rotateReverse {
+      from {
+        transform: rotate(360deg);
+      }
+      to {
+        transform: rotate(0deg);
+      }
+    }
+
+    .pulse-element {
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    .pulse-ring {
+      animation: pulseRing 2s ease-in-out infinite;
+    }
+
+    .float-gentle {
+      animation: floatGentle 3s ease-in-out infinite;
+    }
+
+    .rotate-slow {
+      animation: rotateSlow 20s linear infinite;
+      transform-origin: center;
+    }
+
+    .rotate-reverse {
+      animation: rotateReverse 15s linear infinite;
+      transform-origin: center;
+    }
+
+    .icon-container {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .service-card:hover .icon-container {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .icon-svg {
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover .icon-svg {
+      filter: drop-shadow(0 8px 16px rgba(102, 126, 234, 0.4));
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .service-card, .location-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .service-card::before, .location-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.5s;
+    }
+
+    .service-card:hover::before, .location-card:hover::before {
+      left: 100%;
+    }
+
+    .service-card:hover, .location-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(102, 126, 234, 0.3);
+    }
+
+    .btn-primary {
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .btn-primary:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-secondary {
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #667eea;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after, .nav-link.active::after {
+      width: 100%;
+    }
+
+    .hero-gradient {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      position: relative;
+    }
+
+    .hero-gradient::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect fill="rgba(255,255,255,0.03)" width="50" height="50"/><rect fill="rgba(255,255,255,0.03)" x="50" y="50" width="50" height="50"/></svg>');
+      opacity: 0.5;
+    }
+
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    @media (max-width: 768px) {
+      .stat-number {
+        font-size: 2rem;
+      }
+      
+      .hero-gradient h1 {
+        font-size: 2.5rem !important;
+      }
+      
+      .hero-gradient p {
+        font-size: 1.1rem !important;
+      }
+      
+      .service-card, .location-card {
+        padding: 1.5rem !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-gradient h1 {
+        font-size: 2rem !important;
+      }
+      
+      .btn-primary, .btn-secondary {
+        width: 100%;
+        padding: 1rem 2rem !important;
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="w-full min-h-full"><!-- Navigation -->
+  <nav class="w-full fixed top-0 z-50 glass-effect" id="navbar">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex justify-between items-center">
+     <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateToPage('home')"><img src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/632b01e0-ee78-46d6-b9d5-1a6c1d9b70ad/image/w=256,quality=90,fit=scale-down" alt="Maghanim Medical Co LLC Logo" class="w-12 h-12 object-contain" id="logo-icon" onerror="this.style.display='none';">
+      <div>
+       <div class="text-xl font-bold" id="company-name-nav">
+        Maghanim Medical Co LLC
+       </div>
+       <div class="text-xs opacity-75" id="tagline-nav">
+        Healthcare Excellence Since 2024
+       </div>
+      </div>
+     </div>
+     <div class="hidden md:flex space-x-8"><a class="nav-link font-medium" data-page="home" onclick="navigateToPage('home')">Home</a> <a class="nav-link font-medium" data-page="clinics" onclick="navigateToPage('clinics')">Clinics</a> <a class="nav-link font-medium" data-page="pharmacies" onclick="navigateToPage('pharmacies')">Pharmacies</a> <a class="nav-link font-medium" data-page="services" onclick="navigateToPage('services')">Services</a> <a class="nav-link font-medium" data-page="contact" onclick="navigateToPage('contact')">Contact</a>
+     </div><button class="md:hidden" onclick="toggleMobileMenu()">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg></button>
+    </div><!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2"><a class="block nav-link py-2" onclick="navigateToPage('home')">Home</a> <a class="block nav-link py-2" onclick="navigateToPage('clinics')">Clinics</a> <a class="block nav-link py-2" onclick="navigateToPage('pharmacies')">Pharmacies</a> <a class="block nav-link py-2" onclick="navigateToPage('services')">Services</a> <a class="block nav-link py-2" onclick="navigateToPage('contact')">Contact</a>
+    </div>
+   </div>
+  </nav><!-- HOME PAGE -->
+  <div id="home-page" class="page-content active"><!-- Hero Section -->
+   <section class="w-full hero-gradient pt-32 pb-24 relative" id="hero">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+     <div class="text-center">
+      <h1 class="text-5xl md:text-7xl font-black mb-6 text-white leading-tight" id="hero-title">Transforming Healthcare Through Innovation</h1>
+      <p class="text-xl md:text-2xl mb-10 text-white opacity-95 max-w-3xl mx-auto" id="hero-subtitle">Comprehensive medical services, premium pharmacies, and cutting-edge security solutions</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center"><button onclick="navigateToPage('services')" class="btn-primary px-8 py-4 rounded-full font-bold text-lg relative z-10" id="cta-primary"> Explore Our Services </button> <button onclick="navigateToPage('contact')" class="btn-secondary px-8 py-4 rounded-full font-bold text-lg" id="cta-secondary"> Contact Us Today </button>
+      </div>
+     </div>
+    </div>
+   </section><!-- Stats Section -->
+   <section class="w-full py-16" id="stats-section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="text-center">
+       <div class="stat-number gradient-text mb-2">
+        6
+       </div>
+       <div class="text-lg font-semibold opacity-75">
+        Locations
+       </div>
+      </div>
+      <div class="text-center">
+       <div class="stat-number gradient-text mb-2">
+        10K+
+       </div>
+       <div class="text-lg font-semibold opacity-75">
+        Happy Customers
+       </div>
+      </div>
+      <div class="text-center">
+       <div class="stat-number gradient-text mb-2">
+        15+
+       </div>
+       <div class="text-lg font-semibold opacity-75">
+        Years Experience
+       </div>
+      </div>
+      <div class="text-center">
+       <div class="stat-number gradient-text mb-2">
+        50+
+       </div>
+       <div class="text-lg font-semibold opacity-75">
+        Team Members
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Services Overview -->
+   <section class="w-full py-24" id="services-overview">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-16">
+      <h2 class="text-5xl font-black mb-4" id="services-overview-heading">Our Services</h2>
+     </div>
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div class="service-card rounded-2xl p-10 shadow-xl" id="home-clinics-card" onclick="navigateToPage('clinics')">
+       <div class="mb-6">
+        <div class="w-24 h-24 rounded-2xl flex items-center justify-center mx-auto mb-6 icon-container" id="home-clinics-icon-bg">
+         <svg class="w-14 h-14 icon-svg" id="home-clinics-icon" viewbox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="26" y="12" width="12" height="40" rx="2" fill="currentColor" class="pulse-element" /> <rect x="12" y="26" width="40" height="12" rx="2" fill="currentColor" class="pulse-element" style="animation-delay: 0.2s" /> <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2" opacity="0.2" class="rotate-slow" /> <circle cx="32" cy="32" r="22" stroke="currentColor" stroke-width="2" opacity="0.3" class="rotate-reverse" />
+         </svg>
+        </div>
+       </div>
+       <h3 class="text-3xl font-bold text-center mb-3">Medical Clinics</h3>
+       <div class="text-center mb-4 font-bold text-2xl" style="color: #667eea;">
+        2 Locations
+       </div>
+       <p class="text-center text-lg leading-relaxed">State-of-the-art medical facilities with experienced healthcare professionals</p>
+      </div>
+      <div class="service-card rounded-2xl p-10 shadow-xl" id="home-pharmacies-card" onclick="navigateToPage('pharmacies')">
+       <div class="mb-6">
+        <div class="w-24 h-24 rounded-2xl flex items-center justify-center mx-auto mb-6 icon-container" id="home-pharmacies-icon-bg">
+         <svg class="w-14 h-14 icon-svg" id="home-pharmacies-icon" viewbox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M32 8C25 8 20 13 20 20v6h24v-6c0-7-5-12-12-12z" fill="currentColor" opacity="0.3" class="float-gentle" /> <rect x="14" y="26" width="36" height="26" rx="4" fill="currentColor" class="pulse-element" /> <circle cx="32" cy="39" r="4" fill="white" opacity="0.8" class="pulse-element" style="animation-delay: 0.3s" /> <path d="M28 22h8M32 18v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.4" class="float-gentle" style="animation-delay: 0.2s" />
+         </svg>
+        </div>
+       </div>
+       <h3 class="text-3xl font-bold text-center mb-3">Premium Pharmacies</h3>
+       <div class="text-center mb-4 font-bold text-2xl" style="color: #667eea;">
+        3 Locations
+       </div>
+       <p class="text-center text-lg leading-relaxed">Certified pharmacists providing quality medications and health consultations</p>
+      </div>
+      <div class="service-card rounded-2xl p-10 shadow-xl" id="home-cctv-card" onclick="navigateToPage('services')">
+       <div class="mb-6">
+        <div class="w-24 h-24 rounded-2xl flex items-center justify-center mx-auto mb-6 icon-container" id="home-cctv-icon-bg">
+         <svg class="w-14 h-14 icon-svg" id="home-cctv-icon" viewbox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="16" width="24" height="18" rx="3" fill="currentColor" opacity="0.3" class="pulse-element" /> <circle cx="32" cy="25" r="6" stroke="currentColor" stroke-width="2.5" fill="none" class="pulse-ring" /> <circle cx="32" cy="25" r="3" fill="currentColor" class="pulse-element" style="animation-delay: 0.2s" /> <path d="M32 34v8M26 42h12M28 48h8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.6" class="float-gentle" /> <path d="M15 22l-4-4M49 22l4-4M20 12l2-4M44 12l-2-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.3" class="pulse-element" style="animation-delay: 0.4s" />
+         </svg>
+        </div>
+       </div>
+       <h3 class="text-3xl font-bold text-center mb-3">Security Solutions</h3>
+       <div class="text-center mb-4 font-bold text-2xl" style="color: #667eea;">
+        2 Locations
+       </div>
+       <p class="text-center text-lg leading-relaxed">CCTV shop &amp; Digital marketing services</p>
+      </div>
+     </div>
+    </div>
+   </section>
+  </div><!-- CLINICS PAGE -->
+  <div id="clinics-page" class="page-content">
+   <section class="w-full hero-gradient pt-32 pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+     <h1 class="text-5xl md:text-6xl font-black mb-6 text-white" id="clinics-page-title">Our Medical Clinics</h1>
+     <p class="text-xl md:text-2xl text-white opacity-95 max-w-3xl mx-auto" id="clinics-page-subtitle">State-of-the-art facilities providing comprehensive healthcare</p>
+    </div>
+   </section>
+   <section class="w-full py-20" id="clinics-content">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="grid grid-cols-1 md:grid-cols-2 gap-10"><!-- Clinic 1 -->
+      <div class="location-card rounded-2xl p-10 shadow-xl" id="clinic-1-card" onclick="window.open('https://salla.sa/doseclinic', '_blank', 'noopener,noreferrer')">
+       <div class="mb-6">
+        <div class="w-32 h-32 flex items-center justify-center mb-4 mx-auto" id="clinic-1-icon-bg"><img src="https://cdn.salla.sa/cdn-cgi/image/fit=scale-down,width=400,height=400,onerror=redirect,format=auto/dDNdw/eM5BLiWD54uA11iUTFgrWFLfjWtWMBi2jqjoZ2Y6.jpg" alt="Dose Clinic Logo" class="w-full h-full object-contain rounded-lg" id="clinic-1-logo" onerror="this.style.display='none';">
+        </div>
+       </div>
+       <h3 class="text-3xl font-bold mb-4" id="clinic-1-name">Dose Clinic</h3>
+       <div class="space-y-3 text-lg">
+        <div class="flex items-start space-x-3">
+         <svg class="w-6 h-6 mt-1 flex-shrink-0" style="color: #667eea;" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /> <circle cx="12" cy="10" r="3" />
+         </svg><span id="clinic-1-address">شارع الستين, Almudhbah, Taif 26576</span>
+        </div>
+        <div class="flex items-center space-x-3">
+         <svg class="w-6 h-6 flex-shrink-0" style="color: #667eea;" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+         </svg><span id="clinic-1-phone">0127433334</span>
+        </div>
+        <div class="flex items-start space-x-3">
+         <svg class="w-6 h-6 mt-1 flex-shrink-0" style="color: #667eea;" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" /> <polyline points="12 6 12 12 16 14"></polyline>
+         </svg>
+         <div>
+          <div class="font-semibold">
+           Hours:
+          </div>
+          <div>
+           Mon-Fri: 8:00 AM - 8:00 PM
+          </div>
+          <div>
+           Sat-Sun: 9:00 AM - 5:00 PM
+          </div>
+         </div>
+        </div>
+        <div class="mt-6 pt-6 border-t">
+         <div class="font-semibold mb-2">
+          Services Offered:
+         </div>
+         <ul class="space-y-1 opacity-80">
+          <li>• General Medicine</li>
+          <li>• Pediatrics</li>
+          <li>• Emergency Care</li>
+          <li>• Laboratory Services</li>
+         </ul>
+        </div>
+       </div>
+      </div><!-- Clinic 2 -->
+      <div class="location-card rounded-2xl p-10 shadow-xl" id="clinic-2-card" onclick="window.open('https://altajclinic.com/', '_blank', 'noopener,noreferrer')">
+       <div class="mb-6">
+        <div class="w-32 h-32 flex items-center justify-center mb-4 mx-auto" id="clinic-2-icon-bg"><img src="https://cdn.salla.sa/cdn-cgi/image/fit=scale-down,width=400,height=400,onerror=redirect,format=auto/mYNvY/mi4d5wTCjajwFslVzzoMfbYjz6yQDc157g7Jlj5Z.png" alt="Al Taj Clinic Logo" class="w-full h-full object-contain rounded-lg" id="clinic-2-logo" onerror="this.style.display='none';">
+        </div>
+       </div>
+       <h3 class="text-3xl font-bold mb-4" id="clinic-2-name">Al Taj Clinic</h3>
+       <div class="space-y-3 text-lg">
+        <div class="flex items-start space-x-3">
+         <svg class="w-6 h-6 mt-1 flex-shrink-0" style="color: #667eea;" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /> <circle cx="12" cy="10" r="3" />
+         </svg><span id="clinic-2-address">شارع الستين, Almudhbah, Taif 26576</span>
+        </div>
+        <div class="flex items-center space-x-3">
+         <svg class="w-6 h-6 flex-shrink-0" style="color: #667eea;" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+         </svg><span id="clinic-2-phone">0127244440</span>
+        </div>
+        <div class="flex items-start space-x-3">
+         <svg class="w-6 h-6 mt-1 flex-shrink-0" style="color: #667eea;" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" /> <polyline points="12 6 12 12 16 14"></polyline>
+         </svg>
+         <div>
+          <div class="font-semibold">
+           Hours:
+          </div>
+          <div>
+           Mon-Fri: 7:30 AM - 7:00 PM
+          </div>
+          <div>
+           Sat: 9:00 AM - 4:00 PM
+          </div>
+          <div>
+           Sun: Closed
+          </div>
+         </div>
+        </div>
+        <div class="mt-6 pt-6 border-t">
+         <div class="font-semibold mb-2">
+          Services Offered:
+         </div>
+         <ul class="space-y-1 opacity-80">
+          <li>• Family Medicine</li>
+          <li>• Women's Health</li>
+          <li>• Chronic Disease Management</li>
+          <li>• Preventive Care</li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+  </div><!-- PHARMACIES PAGE -->
+  <div id="pharmacies-page" class="page-content">
+   <section class="w-full hero-gradient pt-32 pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+     <h1 class="text-5xl md:text-6xl font-black mb-6 text-white" id="pharmacies-page-title">Our Premium Pharmacies</h1>
+     <p class="text-xl md:text-2xl text-white opacity-95 max-w-3xl mx-auto" id="pharmacies-page-subtitle">Quality medications and expert pharmaceutical care</p>
+    </div>
+   </section>
+   <section class="w-full py-20" id="pharmacies-content">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-10"><!-- Pharmacy 1 -->
+      <div class="location-card rounded-2xl p-8 shadow-xl" id="pharmacy-1-card">
+       <div class="mb-6">
+        <div class="w-32 h-32 flex items-center justify-center mb-4 mx-auto" id="pharmacy-1-icon-bg"><img src="https://cdn.dsmcdn.com/seller-store/uploads/1196216/c4e7e4cd-fe8c-49d7-a397-3eb7f0485bba.jpeg" alt="Al Sorour Medical Pharmacy Logo" class="w-full h-full object-contain rounded-lg" id="pharmacy-1-logo" onerror="this.style.display='none';">
+        </div>
+       </div>
+       <h3 class="text-2xl font-bold mb-4" id="pharmacy-1-name">AL SOROUR MEDICAL PHARMACY 1</h3>
+       <div class="space-y-3">
+        <div class="flex items-start space-x-3">
+         <svg class="w-5 h-5 mt-1 flex-shrink-0" style="color: #667eea;" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /> <circle cx="12" cy="10" r="3" />
+         </svg><span id="pharmacy-1-address">789 Main Street, Central Plaza</span>
+        </div>
+        <div class="flex items-center space-x-3">
+         <svg class="w-5 h-5 flex-shrink-0" style="color: #667eea;" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+         </svg><span id="pharmacy-1-phone">+1 (555) 345-6789</span>
+        </div>
+        <div class="flex items-start space-x-3">
+         <svg class="w-5 h-5 mt-1 flex-shrink-0" style="color: #667eea;" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" /> <polyline points="12 6 12 12 16 14"></polyline>
+         </svg>
+         <div>
+          <div class="font-semibold text-sm">
+           Hours:
+          </div>
+          <div class="text-sm">
+           Mon-Sat: 8 AM - 10 PM
+          </div>
+          <div class="text-sm">
+           Sun: 9 AM - 8 PM
+          </div>
+         </div>
+        </div>
+       </div>
+      </div><!-- Pharmacy 2 -->
+      <div class="location-card rounded-2xl p-8 shadow-xl" id="pharmacy-2-card" onclick="window.open('https://www.trendyol.com/ar/sr?mid=1196216', '_blank', 'noopener,noreferrer')">
+       <div class="mb-6">
+        <div class="w-32 h-32 flex items-center justify-center mb-4 mx-auto" id="pharmacy-2-icon-bg"><img src="https://cdn.dsmcdn.com/seller-store/uploads/1196216/c4e7e4cd-fe8c-49d7-a397-3eb7f0485bba.jpeg" alt="Al Sorour Medical Pharmacy Logo" class="w-full h-full object-contain rounded-lg" id="pharmacy-2-logo" onerror="this.style.display='none';">
+        </div>
+       </div>
+       <h3 class="text-2xl font-bold mb-4" id="pharmacy-2-name">AL SOROUR MEDICAL PHARMACY 2</h3>
+       <div class="space-y-3">
+        <div class="flex items-start space-x-3">
+         <svg class="w-5 h-5 mt-1 flex-shrink-0" style="color: #667eea;" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /> <circle cx="12" cy="10" r="3" />
+         </svg><span id="pharmacy-2-address">321 North Road, Business District</span>
+        </div>
+        <div class="flex items-center space-x-3">
+         <svg class="w-5 h-5 flex-shrink-0" style="color: #667eea;" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+         </svg><span id="pharmacy-2-phone">+1 (555) 456-7890</span>
+        </div>
+        <div class="flex items-start space-x-3">
+         <svg class="w-5 h-5 mt-1 flex-shrink-0" style="color: #667eea;" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" /> <polyline points="12 6 12 12 16 14"></polyline>
+         </svg>
+         <div>
+          <div class="font-semibold text-sm">
+           Hours:
+          </div>
+          <div class="text-sm">
+           Mon-Fri: 9 AM - 9 PM
+          </div>
+          <div class="text-sm">
+           Sat-Sun: 10 AM - 6 PM
+          </div>
+         </div>
+        </div>
+       </div>
+      </div><!-- Pharmacy 3 -->
+      <div class="location-card rounded-2xl p-8 shadow-xl" id="pharmacy-3-card">
+       <div class="mb-6">
+        <div class="w-32 h-32 flex items-center justify-center mb-4 mx-auto" id="pharmacy-3-icon-bg"><img src="https://cdn.dsmcdn.com/seller-store/uploads/1196216/c4e7e4cd-fe8c-49d7-a397-3eb7f0485bba.jpeg" alt="Al Sorour Medical Pharmacy Logo" class="w-full h-full object-contain rounded-lg" id="pharmacy-3-logo" onerror="this.style.display='none';">
+        </div>
+       </div>
+       <h3 class="text-2xl font-bold mb-4" id="pharmacy-3-name">AL SOROUR MEDICAL PHARMACY 3</h3>
+       <div class="space-y-3">
+        <div class="flex items-start space-x-3">
+         <svg class="w-5 h-5 mt-1 flex-shrink-0" style="color: #667eea;" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /> <circle cx="12" cy="10" r="3" />
+         </svg><span id="pharmacy-3-address">654 South Avenue, Shopping Center</span>
+        </div>
+        <div class="flex items-center space-x-3">
+         <svg class="w-5 h-5 flex-shrink-0" style="color: #667eea;" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+         </svg><span id="pharmacy-3-phone">+1 (555) 567-8901</span>
+        </div>
+        <div class="flex items-start space-x-3">
+         <svg class="w-5 h-5 mt-1 flex-shrink-0" style="color: #667eea;" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" /> <polyline points="12 6 12 12 16 14"></polyline>
+         </svg>
+         <div>
+          <div class="font-semibold text-sm">
+           Hours:
+          </div>
+          <div class="text-sm">
+           Open 24/7
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+  </div><!-- SERVICES PAGE -->
+  <div id="services-page" class="page-content">
+   <section class="w-full hero-gradient pt-32 pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+     <h1 class="text-5xl md:text-6xl font-black mb-6 text-white" id="services-page-title">Complete Healthcare &amp; Security Solutions</h1>
+     <p class="text-xl md:text-2xl text-white opacity-95 max-w-3xl mx-auto" id="services-page-subtitle">Comprehensive services tailored to your needs</p>
+    </div>
+   </section>
+   <section class="w-full py-20" id="services-detailed">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="space-y-16"><!-- Medical Services -->
+      <div>
+       <h2 class="text-4xl font-bold mb-8 text-center">Medical Services</h2>
+       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="p-6 rounded-xl shadow-lg">
+         <h3 class="text-xl font-bold mb-3">General Medicine</h3>
+         <p class="opacity-75">Comprehensive primary care for all ages</p>
+        </div>
+        <div class="p-6 rounded-xl shadow-lg">
+         <h3 class="text-xl font-bold mb-3">Pediatrics</h3>
+         <p class="opacity-75">Specialized care for children and adolescents</p>
+        </div>
+        <div class="p-6 rounded-xl shadow-lg">
+         <h3 class="text-xl font-bold mb-3">Women's Health</h3>
+         <p class="opacity-75">Complete gynecological and prenatal care</p>
+        </div>
+        <div class="p-6 rounded-xl shadow-lg">
+         <h3 class="text-xl font-bold mb-3">Emergency Care</h3>
+         <p class="opacity-75">24/7 urgent medical attention</p>
+        </div>
+       </div>
+      </div><!-- Pharmacy Services -->
+      <div>
+       <h2 class="text-4xl font-bold mb-8 text-center">Pharmacy Services</h2>
+       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="p-6 rounded-xl shadow-lg">
+         <h3 class="text-xl font-bold mb-3">Prescription Filling</h3>
+         <p class="opacity-75">Fast and accurate medication dispensing</p>
+        </div>
+        <div class="p-6 rounded-xl shadow-lg">
+         <h3 class="text-xl font-bold mb-3">Consultations</h3>
+         <p class="opacity-75">Expert pharmaceutical advice</p>
+        </div>
+        <div class="p-6 rounded-xl shadow-lg">
+         <h3 class="text-xl font-bold mb-3">Health Products</h3>
+         <p class="opacity-75">Wide range of wellness items</p>
+        </div>
+        <div class="p-6 rounded-xl shadow-lg">
+         <h3 class="text-xl font-bold mb-3">Delivery Service</h3>
+         <p class="opacity-75">Convenient home delivery available</p>
+        </div>
+       </div>
+      </div><!-- Security & Marketing Solutions -->
+      <div>
+       <h2 class="text-4xl font-bold mb-8 text-center">Security &amp; Marketing Solutions</h2>
+       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12"><!-- CCTV Shop -->
+        <div class="p-8 rounded-2xl shadow-xl">
+         <div class="flex items-center justify-center mb-6">
+          <svg class="w-20 h-20" style="color: #667eea;" viewbox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="16" width="24" height="18" rx="3" fill="currentColor" opacity="0.2" /> <circle cx="32" cy="25" r="6" stroke="currentColor" stroke-width="2.5" fill="none" /> <circle cx="32" cy="25" r="3" fill="currentColor" /> <path d="M32 34v8M26 42h12M28 48h8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+          </svg>
+         </div>
+         <h3 class="text-3xl font-bold mb-4 text-center">CCTV Shop</h3>
+         <p class="text-lg mb-6 text-center opacity-75">Complete security camera solutions</p>
+         <ul class="space-y-3">
+          <li class="flex items-start">
+           <svg class="w-5 h-5 mr-2 mt-1 flex-shrink-0" style="color: #667eea;" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg><span>Professional CCTV Installation</span></li>
+          <li class="flex items-start">
+           <svg class="w-5 h-5 mr-2 mt-1 flex-shrink-0" style="color: #667eea;" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg><span>24/7 Monitoring Systems</span></li>
+          <li class="flex items-start">
+           <svg class="w-5 h-5 mr-2 mt-1 flex-shrink-0" style="color: #667eea;" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg><span>HD &amp; IP Camera Solutions</span></li>
+          <li class="flex items-start">
+           <svg class="w-5 h-5 mr-2 mt-1 flex-shrink-0" style="color: #667eea;" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg><span>System Maintenance &amp; Support</span></li>
+         </ul>
+        </div><!-- Digital Marketing -->
+        <div class="p-8 rounded-2xl shadow-xl">
+         <div class="flex items-center justify-center mb-6">
+          <svg class="w-20 h-20" style="color: #667eea;" viewbox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="20" stroke="currentColor" stroke-width="2.5" opacity="0.3" /> <path d="M32 12v40M12 32h40" stroke="currentColor" stroke-width="2.5" opacity="0.5" /> <circle cx="32" cy="12" r="3" fill="currentColor" /> <circle cx="32" cy="52" r="3" fill="currentColor" /> <circle cx="12" cy="32" r="3" fill="currentColor" /> <circle cx="52" cy="32" r="3" fill="currentColor" /> <circle cx="45" cy="19" r="2" fill="currentColor" opacity="0.7" /> <circle cx="45" cy="45" r="2" fill="currentColor" opacity="0.7" /> <circle cx="19" cy="19" r="2" fill="currentColor" opacity="0.7" /> <circle cx="19" cy="45" r="2" fill="currentColor" opacity="0.7" />
+          </svg>
+         </div>
+         <h3 class="text-3xl font-bold mb-4 text-center">Digital Marketing</h3>
+         <p class="text-lg mb-6 text-center opacity-75">Comprehensive online marketing services</p>
+         <ul class="space-y-3">
+          <li class="flex items-start">
+           <svg class="w-5 h-5 mr-2 mt-1 flex-shrink-0" style="color: #667eea;" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg><span>Social Media Management</span></li>
+          <li class="flex items-start">
+           <svg class="w-5 h-5 mr-2 mt-1 flex-shrink-0" style="color: #667eea;" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg><span>SEO &amp; Content Marketing</span></li>
+          <li class="flex items-start">
+           <svg class="w-5 h-5 mr-2 mt-1 flex-shrink-0" style="color: #667eea;" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg><span>Paid Advertising Campaigns</span></li>
+          <li class="flex items-start">
+           <svg class="w-5 h-5 mr-2 mt-1 flex-shrink-0" style="color: #667eea;" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg><span>Brand Strategy &amp; Analytics</span></li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+  </div><!-- CONTACT PAGE -->
+  <div id="contact-page" class="page-content">
+   <section class="w-full hero-gradient pt-32 pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+     <h1 class="text-5xl md:text-6xl font-black mb-6 text-white">Get In Touch</h1>
+     <p class="text-xl md:text-2xl text-white opacity-95 max-w-3xl mx-auto">We're here to help with all your healthcare and security needs</p>
+    </div>
+   </section>
+   <section class="w-full py-20" id="contact-content">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div class="text-center p-8 rounded-xl shadow-lg transition-all hover:scale-105">
+       <svg class="w-16 h-16 mx-auto mb-4" style="color: #667eea;" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+       </svg>
+       <h3 class="text-2xl font-bold mb-3">Call Us</h3>
+       <p class="text-lg opacity-75">Available 24/7 for emergencies</p>
+       <p class="mt-4 font-semibold">+1 (555) 123-4567</p>
+      </div>
+      <div class="text-center p-8 rounded-xl shadow-lg transition-all hover:scale-105">
+       <svg class="w-16 h-16 mx-auto mb-4" style="color: #667eea;" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /> <circle cx="12" cy="10" r="3" />
+       </svg>
+       <h3 class="text-2xl font-bold mb-3">Visit Us</h3>
+       <p class="text-lg opacity-75">6 Convenient Locations</p>
+       <div class="mt-4 space-y-1"><button onclick="navigateToPage('clinics')" class="text-sm underline hover:no-underline">2 Medical Clinics</button><br><button onclick="navigateToPage('pharmacies')" class="text-sm underline hover:no-underline">3 Pharmacies</button><br><button onclick="navigateToPage('services')" class="text-sm underline hover:no-underline">CCTV Shop &amp; Digital Marketing</button>
+       </div>
+      </div>
+      <div class="text-center p-8 rounded-xl shadow-lg transition-all hover:scale-105">
+       <svg class="w-16 h-16 mx-auto mb-4" style="color: #667eea;" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /> <polyline points="22,6 12,13 2,6"></polyline>
+       </svg>
+       <h3 class="text-2xl font-bold mb-3">Email Us</h3>
+       <p class="text-lg opacity-75">Quick response guaranteed</p>
+       <p class="mt-4 font-semibold">info@maghanim.com</p>
+      </div>
+     </div>
+    </div>
+   </section>
+  </div><!-- Footer -->
+  <footer class="w-full py-12" id="footer">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+     <div>
+      <div class="flex items-center space-x-3 mb-4"><img src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/632b01e0-ee78-46d6-b9d5-1a6c1d9b70ad/image/w=256,quality=90,fit=scale-down" alt="Maghanim Medical Co LLC Logo" class="w-10 h-10 object-contain" id="footer-logo-icon" onerror="this.style.display='none';">
+       <div class="text-lg font-bold" id="footer-company-name">
+        Maghanim Medical Co LLC
+       </div>
+      </div>
+      <p class="opacity-75 leading-relaxed" id="footer-about">Leading healthcare provider with multiple clinics, pharmacies, and security solutions</p>
+     </div>
+     <div>
+      <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+      <ul class="space-y-2">
+       <li><button onclick="navigateToPage('home')" class="opacity-75 hover:opacity-100 transition-opacity">Home</button></li>
+       <li><button onclick="navigateToPage('clinics')" class="opacity-75 hover:opacity-100 transition-opacity">Clinics</button></li>
+       <li><button onclick="navigateToPage('pharmacies')" class="opacity-75 hover:opacity-100 transition-opacity">Pharmacies</button></li>
+       <li><button onclick="navigateToPage('services')" class="opacity-75 hover:opacity-100 transition-opacity">Services</button></li>
+       <li><button onclick="navigateToPage('contact')" class="opacity-75 hover:opacity-100 transition-opacity">Contact</button></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-lg font-bold mb-4">Our Services</h4>
+      <ul class="space-y-2 opacity-75">
+       <li>2 Medical Clinics</li>
+       <li>3 Premium Pharmacies</li>
+       <li>CCTV Shop</li>
+       <li>Digital Marketing</li>
+      </ul>
+     </div>
+    </div>
+    <div class="border-t pt-8 text-center opacity-75" id="footer-border">
+     <p id="footer-copyright">© 2024 Maghanim Medical Co LLC. All rights reserved.</p>
+    </div>
+   </div>
+  </footer>
+  <script>
+    const defaultConfig = {
+      background_color: "#ffffff",
+      surface_color: "#f8fafc",
+      text_color: "#1e293b",
+      primary_action_color: "#667eea",
+      secondary_action_color: "#ffffff",
+      font_family: "Inter",
+      font_size: 16,
+      company_name: "Maghanim Medical Co LLC",
+      tagline: "Healthcare Excellence Since 2024",
+      hero_title: "Transforming Healthcare Through Innovation",
+      hero_subtitle: "Comprehensive medical services, premium pharmacies, and cutting-edge security solutions",
+      cta_primary: "Explore Our Services",
+      cta_secondary: "Contact Us Today",
+      services_overview_title: "Our Services",
+      clinics_page_title: "Our Medical Clinics",
+      clinics_page_subtitle: "State-of-the-art facilities providing comprehensive healthcare",
+      clinic_1_name: "Dose Clinic",
+      clinic_1_address: "ش  رع الستين, Almudhbah, Taif 26576",
+      clinic_1_phone: "0127433334",
+      clinic_2_name: "Al Taj Clinic",
+      clinic_2_address: "شارع الستين, Almudhbah, Taif 26576",
+      clinic_2_phone: "0127244440",
+      pharmacies_page_title: "Our Premium Pharmacies",
+      pharmacies_page_subtitle: "Quality medications and expert pharmaceutical care",
+      pharmacy_1_name: "AL SOROUR MEDICAL PHARMACY 1",
+      pharmacy_1_address: "789 Main Street, Central Plaza",
+      pharmacy_1_phone: "+1 (555) 345-6789",
+      pharmacy_2_name: "AL SOROUR MEDICAL PHARMACY 2",
+      pharmacy_2_address: "321 North Road, Business District",
+      pharmacy_2_phone: "+1 (555) 456-7890",
+      pharmacy_3_name: "AL SOROUR MEDICAL PHARMACY 3",
+      pharmacy_3_address: "654 South Avenue, Shopping Center",
+      pharmacy_3_phone: "+1 (555) 567-8901",
+      services_page_title: "Complete Healthcare & Security Solutions",
+      services_page_subtitle: "Comprehensive services tailored to your needs",
+      footer_about: "Leading healthcare provider with multiple clinics, pharmacies, and security solutions",
+      footer_copyright: "© 2024 Maghanim Medical Co LLC. All rights reserved."
+    };
+
+    let currentPage = 'home';
+
+    function navigateToPage(page) {
+      // Hide all pages
+      document.querySelectorAll('.page-content').forEach(p => {
+        p.classList.remove('active');
+      });
+
+      // Show selected page
+      const targetPage = document.getElementById(`${page}-page`);
+      if (targetPage) {
+        targetPage.classList.add('active');
+        currentPage = page;
+        
+        // Update active nav link
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('data-page') === page) {
+            link.classList.add('active');
+          }
+        });
+
+        // Close mobile menu
+        document.getElementById('mobile-menu').classList.add('hidden');
+        
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    async function onConfigChange(config) {
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
+      const secondaryColor = config.secondary_action_color || defaultConfig.secondary_action_color;
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      const baseFontSize = config.font_size || defaultConfig.font_size;
+
+      // Apply colors
+      document.body.style.backgroundColor = backgroundColor;
+      document.getElementById('stats-section').style.backgroundColor = backgroundColor;
+      document.getElementById('services-overview').style.backgroundColor = surfaceColor;
+      document.getElementById('clinics-content').style.backgroundColor = surfaceColor;
+      document.getElementById('pharmacies-content').style.backgroundColor = surfaceColor;
+      document.getElementById('services-detailed').style.backgroundColor = surfaceColor;
+      document.getElementById('contact-content').style.backgroundColor = surfaceColor;
+      
+      document.getElementById('navbar').style.color = textColor;
+      document.getElementById('footer').style.backgroundColor = surfaceColor;
+      document.getElementById('footer').style.color = textColor;
+      document.getElementById('footer-border').style.borderColor = textColor;
+
+      // Cards
+      const allCards = document.querySelectorAll('.service-card, .location-card, #contact-content > div > div');
+      allCards.forEach(card => {
+        card.style.backgroundColor = backgroundColor;
+        card.style.color = textColor;
+      });
+
+      // Service detail cards
+      const serviceCards = document.querySelectorAll('#services-detailed .p-6');
+      serviceCards.forEach(card => {
+        card.style.backgroundColor = backgroundColor;
+        card.style.color = textColor;
+      });
+
+      // Home page icons
+      document.getElementById('home-clinics-icon-bg').style.backgroundColor = primaryColor + '20';
+      document.getElementById('home-pharmacies-icon-bg').style.backgroundColor = primaryColor + '20';
+      document.getElementById('home-cctv-icon-bg').style.backgroundColor = primaryColor + '20';
+      document.getElementById('home-clinics-icon').style.color = primaryColor;
+      document.getElementById('home-pharmacies-icon').style.color = primaryColor;
+      document.getElementById('home-cctv-icon').style.color = primaryColor;
+
+      // Clinic logo backgrounds (no styling needed for images)
+
+      // Pharmacy icons
+      document.getElementById('pharmacy-1-icon-bg').style.backgroundColor = primaryColor + '20';
+      document.getElementById('pharmacy-2-icon-bg').style.backgroundColor = primaryColor + '20';
+      document.getElementById('pharmacy-3-icon-bg').style.backgroundColor = primaryColor + '20';
+      document.getElementById('pharmacy-1-icon').style.color = primaryColor;
+      document.getElementById('pharmacy-2-icon').style.color = primaryColor;
+      document.getElementById('pharmacy-3-icon').style.color = primaryColor;
+
+      // Buttons
+      document.getElementById('cta-primary').style.backgroundColor = primaryColor;
+      document.getElementById('cta-primary').style.color = '#ffffff';
+      document.getElementById('cta-secondary').style.backgroundColor = secondaryColor;
+      document.getElementById('cta-secondary').style.color = textColor;
+      document.getElementById('cta-secondary').style.border = `2px solid ${textColor}`;
+
+      // Text colors
+      document.getElementById('company-name-nav').style.color = textColor;
+      document.getElementById('tagline-nav').style.color = textColor;
+      
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.style.color = textColor;
+      });
+
+      // Font
+      const fontStack = `${fontFamily}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+      document.body.style.fontFamily = fontStack;
+
+      // Font sizes
+      document.getElementById('hero-title').style.fontSize = `${baseFontSize * 3.5}px`;
+      document.getElementById('hero-subtitle').style.fontSize = `${baseFontSize * 1.25}px`;
+      document.getElementById('company-name-nav').style.fontSize = `${baseFontSize * 1.25}px`;
+
+      // Update text content
+      document.getElementById('company-name-nav').textContent = config.company_name || defaultConfig.company_name;
+      document.getElementById('tagline-nav').textContent = config.tagline || defaultConfig.tagline;
+      document.getElementById('hero-title').textContent = config.hero_title || defaultConfig.hero_title;
+      document.getElementById('hero-subtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+      document.getElementById('cta-primary').textContent = config.cta_primary || defaultConfig.cta_primary;
+      document.getElementById('cta-secondary').textContent = config.cta_secondary || defaultConfig.cta_secondary;
+      document.getElementById('services-overview-heading').textContent = config.services_overview_title || defaultConfig.services_overview_title;
+      
+      document.getElementById('clinics-page-title').textContent = config.clinics_page_title || defaultConfig.clinics_page_title;
+      document.getElementById('clinics-page-subtitle').textContent = config.clinics_page_subtitle || defaultConfig.clinics_page_subtitle;
+      document.getElementById('clinic-1-name').textContent = config.clinic_1_name || defaultConfig.clinic_1_name;
+      document.getElementById('clinic-1-address').textContent = config.clinic_1_address || defaultConfig.clinic_1_address;
+      document.getElementById('clinic-1-phone').textContent = config.clinic_1_phone || defaultConfig.clinic_1_phone;
+      document.getElementById('clinic-2-name').textContent = config.clinic_2_name || defaultConfig.clinic_2_name;
+      document.getElementById('clinic-2-address').textContent = config.clinic_2_address || defaultConfig.clinic_2_address;
+      document.getElementById('clinic-2-phone').textContent = config.clinic_2_phone || defaultConfig.clinic_2_phone;
+      
+      document.getElementById('pharmacies-page-title').textContent = config.pharmacies_page_title || defaultConfig.pharmacies_page_title;
+      document.getElementById('pharmacies-page-subtitle').textContent = config.pharmacies_page_subtitle || defaultConfig.pharmacies_page_subtitle;
+      document.getElementById('pharmacy-1-name').textContent = config.pharmacy_1_name || defaultConfig.pharmacy_1_name;
+      document.getElementById('pharmacy-1-address').textContent = config.pharmacy_1_address || defaultConfig.pharmacy_1_address;
+      document.getElementById('pharmacy-1-phone').textContent = config.pharmacy_1_phone || defaultConfig.pharmacy_1_phone;
+      document.getElementById('pharmacy-2-name').textContent = config.pharmacy_2_name || defaultConfig.pharmacy_2_name;
+      document.getElementById('pharmacy-2-address').textContent = config.pharmacy_2_address || defaultConfig.pharmacy_2_address;
+      document.getElementById('pharmacy-2-phone').textContent = config.pharmacy_2_phone || defaultConfig.pharmacy_2_phone;
+      document.getElementById('pharmacy-3-name').textContent = config.pharmacy_3_name || defaultConfig.pharmacy_3_name;
+      document.getElementById('pharmacy-3-address').textContent = config.pharmacy_3_address || defaultConfig.pharmacy_3_address;
+      document.getElementById('pharmacy-3-phone').textContent = config.pharmacy_3_phone || defaultConfig.pharmacy_3_phone;
+      
+      document.getElementById('services-page-title').textContent = config.services_page_title || defaultConfig.services_page_title;
+      document.getElementById('services-page-subtitle').textContent = config.services_page_subtitle || defaultConfig.services_page_subtitle;
+      
+      document.getElementById('footer-about').textContent = config.footer_about || defaultConfig.footer_about;
+      document.getElementById('footer-copyright').textContent = config.footer_copyright || defaultConfig.footer_copyright;
+      document.getElementById('footer-company-name').textContent = config.company_name || defaultConfig.company_name;
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => {
+                config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (value) => {
+                config.surface_color = value;
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => {
+                config.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            },
+            {
+              get: () => config.primary_action_color || defaultConfig.primary_action_color,
+              set: (value) => {
+                config.primary_action_color = value;
+                window.elementSdk.setConfig({ primary_action_color: value });
+              }
+            },
+            {
+              get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+              set: (value) => {
+                config.secondary_action_color = value;
+                window.elementSdk.setConfig({ secondary_action_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => {
+              config.font_family = value;
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (value) => {
+              config.font_size = value;
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["company_name", config.company_name || defaultConfig.company_name],
+          ["tagline", config.tagline || defaultConfig.tagline],
+          ["hero_title", config.hero_title || defaultConfig.hero_title],
+          ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+          ["cta_primary", config.cta_primary || defaultConfig.cta_primary],
+          ["cta_secondary", config.cta_secondary || defaultConfig.cta_secondary],
+          ["services_overview_title", config.services_overview_title || defaultConfig.services_overview_title],
+          ["clinics_page_title", config.clinics_page_title || defaultConfig.clinics_page_title],
+          ["clinics_page_subtitle", config.clinics_page_subtitle || defaultConfig.clinics_page_subtitle],
+          ["clinic_1_name", config.clinic_1_name || defaultConfig.clinic_1_name],
+          ["clinic_1_address", config.clinic_1_address || defaultConfig.clinic_1_address],
+          ["clinic_1_phone", config.clinic_1_phone || defaultConfig.clinic_1_phone],
+          ["clinic_2_name", config.clinic_2_name || defaultConfig.clinic_2_name],
+          ["clinic_2_address", config.clinic_2_address || defaultConfig.clinic_2_address],
+          ["clinic_2_phone", config.clinic_2_phone || defaultConfig.clinic_2_phone],
+          ["pharmacies_page_title", config.pharmacies_page_title || defaultConfig.pharmacies_page_title],
+          ["pharmacies_page_subtitle", config.pharmacies_page_subtitle || defaultConfig.pharmacies_page_subtitle],
+          ["pharmacy_1_name", config.pharmacy_1_name || defaultConfig.pharmacy_1_name],
+          ["pharmacy_1_address", config.pharmacy_1_address || defaultConfig.pharmacy_1_address],
+          ["pharmacy_1_phone", config.pharmacy_1_phone || defaultConfig.pharmacy_1_phone],
+          ["pharmacy_2_name", config.pharmacy_2_name || defaultConfig.pharmacy_2_name],
+          ["pharmacy_2_address", config.pharmacy_2_address || defaultConfig.pharmacy_2_address],
+          ["pharmacy_2_phone", config.pharmacy_2_phone || defaultConfig.pharmacy_2_phone],
+          ["pharmacy_3_name", config.pharmacy_3_name || defaultConfig.pharmacy_3_name],
+          ["pharmacy_3_address", config.pharmacy_3_address || defaultConfig.pharmacy_3_address],
+          ["pharmacy_3_phone", config.pharmacy_3_phone || defaultConfig.pharmacy_3_phone],
+          ["services_page_title", config.services_page_title || defaultConfig.services_page_title],
+          ["services_page_subtitle", config.services_page_subtitle || defaultConfig.services_page_subtitle],
+          ["footer_about", config.footer_about || defaultConfig.footer_about],
+          ["footer_copyright", config.footer_copyright || defaultConfig.footer_copyright]
+        ])
+      });
+    }
+
+    // Initialize
+    navigateToPage('home');
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9aa525bee3b3edc3',t:'MTc2NTEyMjI5OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
